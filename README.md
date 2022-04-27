@@ -5,18 +5,18 @@ This project provides R scripts for processing the air toxics data collected by 
 These scripts require the user to first download the data from the EPA AQS database and the Repository database located at the Hillsboro Lab.
 
 Details on obtaining data:
-# downloaded data from the epa aqs web app. 
-# use an amp501 raw data report
-# aqs and supporting linksusage info can be found at: https://www.epa.gov/aqs
-# specific details on the amp501 query are included with aqs output file and those details are 
-# in the .pdf located with the data in the input directory 
+downloaded data from the epa aqs web app. 
+use an amp501 raw data report
+aqs and supporting linksusage info can be found at: https://www.epa.gov/aqs
+specific details on the amp501 query are included with aqs output file and those details are 
+in the .pdf located with the data in the input directory 
 
-# download data from the Repository database (DEQs) using Bruces tool 
-# There was some light processing using Bruce's tool (via the query request) and in excel before import into R.  
-# Pre-processing included:
-# (1) did not export invalidated data --> only exported data w/ data quality = A, B, or F
-# (2) updated unit format to remove mu and superscripts, etc in excel
-# (3) exported primary monitor only - poc = 7 for air toxics
+download data from the Repository database (DEQs) using Bruces tool 
+There was some light processing using Bruce's tool (via the query request) and in excel before import into R.  
+Pre-processing included:
+(1) did not export invalidated data --> only exported data w/ data quality = A, B, or F
+(2) updated unit format to remove mu and superscripts, etc in excel
+(3) exported primary monitor only - poc = 7 for air toxics
 
 Put the downloaded data into the correct directories located in the input folder
 
