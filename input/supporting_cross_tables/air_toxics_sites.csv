@@ -1,0 +1,10 @@
+site,epa_id,Station_ID,station_description,street_address,city,county,latitude,longitude,particulate_link_epa_id
+BEES,410170123,Bend 8th & Emerson,Bend High School,Bend NE 8th and Emerson,Bend,Deschutes,44.05194,-121.2942,410170120
+E99,410390059,Eugene Hwy 99,Eugene Hwy 99,530 Hwy 99 North,Eugene,Lane,44.06722,-123.14135,410390059
+EAP,410390060,Eugene Amazon Park,Eugene Amazon Park,499 E 29TH,Eugene,Lane,44.02631,-123.08374,410390060
+HHF,410670004,Hillsboro Hare Field,Hillsboro Hare Field,1149 NE Grant St,Hillsboro,Washington,45.5285,-122.9724,410670004
+LHN,410610123,La Grande Hall and N,La Grande Hall North ,1305 N Willow Street La Grande,La Grande,Union,45.3236,-118.0781,410610123
+MWJ,410292129,Medford Welch and Jackson,Medford Welch Jackson,711 Welch St,Medford,Jackson,42.3315,-122.8803,410292129
+PCH,410512011,Portland Cully Helensview,Portland Cully Helensview School, 8678 NE Sumner St,Portland,Multnomah,45.5625,-122.5753,410510080
+PHS,410512010,Portland Humboldt School,Portland Humboldt School,4915 N Gantenbein Ave,Portland,Multnomah,45.5581,-122.671,410510080
+TBC,410670005,Tualatin Bradbury Court,Tualatin I5,6745 Bradbury Court,Tualatin,Washington,45.3997,-122.7451,410670005
