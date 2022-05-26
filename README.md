@@ -19,8 +19,8 @@ Pre-processing included:
 (3) exported primary monitor only - poc = 7 for air toxics
 
 Put the downloaded data into the correct directories located in the input folder
-Make an output folder - name it output
-Make an folder for output figures and tables - include a figures folder and a tables folder in the output folder
+Make an output folder - name it "output"
+Make subfolders in the output folder for figures ["figures"] and tables ["tables"] 
 
 Run the R scripts in the following order
 (1) air_toxics_load_ad_merge_step1.R - this preps air toxics data to a consistent format for analysis
