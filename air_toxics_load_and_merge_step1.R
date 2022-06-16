@@ -112,13 +112,17 @@ repository_dat$analyte_group[foc_group] <- "Metals"
 foc_group <- repository_dat$Analysis == "Air Toxics Metals (LoVol) by ICPMS"
 repository_dat$analyte_group[foc_group] <- "Metals"
 
-
 repository_dat <- left_join(repository_dat, cross_table$Analyte_Master_LookupTable, 
                             by = c("analyte_group" = "analyte_group", "CASNum" = "cas_number"))
 
-tox_sites <- cross_table$air_toxics_sites %>% select(station_id, epa_id)
+tox_sites <- cross_table$air_toxics_sites %>% select(project, epa_id)
 tox_sites$epa_id <- as.numeric(tox_sites$epa_id)
-repository_dat <- left_join(repository_dat, tox_sites, by = c("Project" = "station_id"))
+
+# added 13JUN2022 to remove sites that we do not want to process
+sites_to_process <- repository_dat$Project %in% tox_sites$project
+repository_dat <- repository_dat[sites_to_process,]
+
+repository_dat <- left_join(repository_dat, tox_sites, by = c("Project" = "project"))
 
 repository_dat$station_description <- repository_dat$Station_Description
 repository_dat$date <- repository_dat$Sampled_Date

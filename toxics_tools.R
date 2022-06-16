@@ -73,7 +73,7 @@ load_tox_dat <- function(root2get, file2get){
 }
 
 load_cross_tab <- function(root2get){
-  air_toxics_sites <- read_csv(paste0(root2get, "/air_toxics_sites.csv"), 
+  air_toxics_sites <- read_csv(paste0(root2get, "/air_toxics_sites_to_process.csv"), 
                                col_types = cols(site = col_character(),
                                                 epa_id = col_double(), 
                                                 station_description = col_character(), 
