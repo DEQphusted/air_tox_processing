@@ -35,6 +35,7 @@ out_ext_dat <- "_repository_"
 air_toxics$date <- as.Date(air_toxics$date)
 air_toxics$sample_value <- as.numeric(air_toxics$sample_value)
 air_toxics$oregon_abc_ug_m3 <- as.numeric(air_toxics$oregon_abc_ug_m3)
+air_toxics$hr24_rbc_cao_ug_m3 <- as.numeric(air_toxics$hr24_rbc_cao_ug_m3)
 air_toxics$mol_weight_g_mol <- as.numeric(air_toxics$mol_weight_g_mol)
 air_toxics$alternate_method_detectable_limit <- as.numeric(air_toxics$alternate_method_detectable_limit)
 
@@ -60,6 +61,20 @@ vocs <- air_toxics$analyte_group == "VOCs" & air_toxics$units.unit == "Parts per
 air_toxics$best_val_ug_m3[vocs] <- (air_toxics$best_val[vocs] * air_toxics$mol_weight_g_mol[vocs] * 12.187)/298.15
 
 # suggest that all units should use LTP or STP in the future
+
+#####################################
+
+# check daily
+
+#####################################
+
+missing_hr24_rbc <- is.na(air_toxics$hr24_rbc_cao_ug_m3)
+daily_exceed <- !missing_hr24_rbc & (air_toxics$best_val_ug_m3 >= air_toxics$hr24_rbc_cao_ug_m3)
+air_toxics_daily_exceed <- air_toxics[daily_exceed,]
+
+## write the data out
+proc <- Sys.Date() %>% gsub("-", "", .)
+write.csv(air_toxics_daily_exceed, file = paste0("./output/tables/air_toxics_non_cancer_cao24hr_exceed_", out_ext_dat, proc, ".csv"), row.names = FALSE)
 
 #####################################
 
