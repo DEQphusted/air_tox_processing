@@ -9,7 +9,7 @@
 # Part 0: libraries, functions, and setup
 ##########################################
 library(readr)
-source("toxics_tools.R")
+source("step0_toxics_tools.R")
 
 # this is top directory for processing
 root_dir <- getwd()
