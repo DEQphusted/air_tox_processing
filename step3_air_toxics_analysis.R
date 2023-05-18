@@ -27,10 +27,10 @@ do_km_mean <- function(df){
 
 #####################################
 # aqs data
-# air_toxics <- read_csv("./output/tables/air_toxics_compiled_20221026.csv", col_types = cols(.default = "c"))
+# air_toxics <- read_csv("./output/tables/air_toxics_compiled_20230104.csv", col_types = cols(.default = "c"))
 # out_ext_dat <- ""
 # repository data
-air_toxics <- read_csv("./output/tables/air_toxics_repository_20221026.csv", col_types = cols(.default = "c"))
+air_toxics <- read_csv("./output/tables/air_toxics_repository_20230302.csv", col_types = cols(.default = "c"))
 out_ext_dat <- "_repository_"
 air_toxics$date <- as.Date(air_toxics$date)
 air_toxics$sample_value <- as.numeric(air_toxics$sample_value)
@@ -163,7 +163,7 @@ write.csv(air_toxics_summary, file = paste0("./output/tables/air_toxics_summary_
 
 #############################################
 
-pm25 <- read_csv("./output/tables/particulates_daily_20221026.csv", col_types = cols(.default = "c"))
+pm25 <- read_csv("./output/tables/particulates_daily_20230302.csv", col_types = cols(.default = "c"))
 pm25$date <- as.Date(pm25$date)
 pm25$pm25 <- as.double(pm25$pm25)
 

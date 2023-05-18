@@ -129,3 +129,4 @@ load_cross_tab <- function(root2get){
   
   return(cross_table)
 }
+

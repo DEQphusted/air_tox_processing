@@ -22,44 +22,44 @@ root_dir <- getwd()
 cross_table <- load_cross_tab("./input/supporting_cross_tables")
 
 # load the EPA AQS data from the AMP501 Raw data report
-or_state_air_toxics <- load_tox_dat(root_dir, "/input/air_toxics/or_state_air_toxics_a501/or_state_air_toxics_a501-0.txt")
-portland_air_toxics <- load_tox_dat(root_dir, "/input/air_toxics/portland_air_toxics_a501/portland_air_toxics_a501-0.txt")
+#or_state_air_toxics <- load_tox_dat(root_dir, "/input/air_toxics/or_state_air_toxics_a501/or_state_air_toxics_a501-0.txt")
+#portland_air_toxics <- load_tox_dat(root_dir, "/input/air_toxics/portland_air_toxics_a501/portland_air_toxics_a501-0.txt")
 
 # build the dataset and link codes
-air_toxics <- bind_rows(or_state_air_toxics, portland_air_toxics)
-air_toxics <- left_join(air_toxics, cross_table$air_toxics_sites, by = "epa_id", suffix = c(".data", ".method"))
-air_toxics <- left_join(air_toxics, cross_table$methods_all, by = c("parameter_code", "method_code"), suffix = c(".data", ".method"))
-air_toxics <- left_join(air_toxics, cross_table$duration, by = c("sample_duration" = "duration_code"), suffix = c(".all", ".duration"))
-air_toxics <- left_join(air_toxics, cross_table$units, by = c("unit" = "unit_code"), suffix = c(".all", ".unit"))
-air_toxics <- left_join(air_toxics, cross_table$parameters, by = "parameter_code", suffix = c("", ".parameter"))
-air_toxics <- left_join(air_toxics, cross_table$Analyte_Master_LookupTable, by = "cas_number", suffix = c("", ".deq"))
+#air_toxics <- bind_rows(or_state_air_toxics, portland_air_toxics)
+#air_toxics <- left_join(air_toxics, cross_table$air_toxics_sites, by = "epa_id", suffix = c(".data", ".method"))
+#air_toxics <- left_join(air_toxics, cross_table$methods_all, by = c("parameter_code", "method_code"), suffix = c(".data", ".method"))
+#air_toxics <- left_join(air_toxics, cross_table$duration, by = c("sample_duration" = "duration_code"), suffix = c(".all", ".duration"))
+#air_toxics <- left_join(air_toxics, cross_table$units, by = c("unit" = "unit_code"), suffix = c(".all", ".unit"))
+#air_toxics <- left_join(air_toxics, cross_table$parameters, by = "parameter_code", suffix = c("", ".parameter"))
+#air_toxics <- left_join(air_toxics, cross_table$Analyte_Master_LookupTable, by = "cas_number", suffix = c("", ".deq"))
 
 # filter down to air toxic's analytes
-air_toxics <- air_toxics %>% filter(!is.na(analyte_name_deq)) 
+#air_toxics <- air_toxics %>% filter(!is.na(analyte_name_deq)) 
 
 # link qualifiers 
-qualifiers <- cross_table$qualifiers %>% select(qualifier_code, qualifier_description, qualifier_type)
+#qualifiers <- cross_table$qualifiers %>% select(qualifier_code, qualifier_description, qualifier_type)
 
-air_toxics <- left_join(air_toxics, qualifiers, by = c("null_data_code" = "qualifier_code"), suffix = c("", ".null"))
-air_toxics <- left_join(air_toxics, qualifiers, by = c("qualifier___1" = "qualifier_code"), suffix = c("", ".1"))
-air_toxics <- left_join(air_toxics, qualifiers, by = c("qualifier___2" = "qualifier_code"), suffix = c("", ".2"))
-air_toxics <- left_join(air_toxics, qualifiers, by = c("qualifier___3" = "qualifier_code"), suffix = c("", ".3"))
-air_toxics <- left_join(air_toxics, qualifiers, by = c("qualifier___4" = "qualifier_code"), suffix = c("", ".4"))
-air_toxics <- left_join(air_toxics, qualifiers, by = c("qualifier___5" = "qualifier_code"), suffix = c("", ".5"))
-air_toxics <- left_join(air_toxics, qualifiers, by = c("qualifier___6" = "qualifier_code"), suffix = c("", ".6"))
-air_toxics <- left_join(air_toxics, qualifiers, by = c("qualifier___7" = "qualifier_code"), suffix = c("", ".7"))
-air_toxics <- left_join(air_toxics, qualifiers, by = c("qualifier___8" = "qualifier_code"), suffix = c("", ".8"))
-air_toxics <- left_join(air_toxics, qualifiers, by = c("qualifier___9" = "qualifier_code"), suffix = c("", ".9"))
-air_toxics <- left_join(air_toxics, qualifiers, by = c("qualifier___10" = "qualifier_code"), suffix = c("", ".10"))
+#air_toxics <- left_join(air_toxics, qualifiers, by = c("null_data_code" = "qualifier_code"), suffix = c("", ".null"))
+#air_toxics <- left_join(air_toxics, qualifiers, by = c("qualifier___1" = "qualifier_code"), suffix = c("", ".1"))
+#air_toxics <- left_join(air_toxics, qualifiers, by = c("qualifier___2" = "qualifier_code"), suffix = c("", ".2"))
+#air_toxics <- left_join(air_toxics, qualifiers, by = c("qualifier___3" = "qualifier_code"), suffix = c("", ".3"))
+#air_toxics <- left_join(air_toxics, qualifiers, by = c("qualifier___4" = "qualifier_code"), suffix = c("", ".4"))
+#air_toxics <- left_join(air_toxics, qualifiers, by = c("qualifier___5" = "qualifier_code"), suffix = c("", ".5"))
+#air_toxics <- left_join(air_toxics, qualifiers, by = c("qualifier___6" = "qualifier_code"), suffix = c("", ".6"))
+#air_toxics <- left_join(air_toxics, qualifiers, by = c("qualifier___7" = "qualifier_code"), suffix = c("", ".7"))
+#air_toxics <- left_join(air_toxics, qualifiers, by = c("qualifier___8" = "qualifier_code"), suffix = c("", ".8"))
+#air_toxics <- left_join(air_toxics, qualifiers, by = c("qualifier___9" = "qualifier_code"), suffix = c("", ".9"))
+#air_toxics <- left_join(air_toxics, qualifiers, by = c("qualifier___10" = "qualifier_code"), suffix = c("", ".10"))
 
 # trace and status
-air_toxics$proc_date <- Sys.Date() %>% gsub("-", "", .)
-air_toxics$database <- "aqs"
+#air_toxics$proc_date <- Sys.Date() %>% gsub("-", "", .)
+##air_toxics$database <- "aqs"
 air_toxics$status <- "final"
 
 # save 
-proc <- Sys.Date() %>% gsub("-", "", .)
-write.csv(air_toxics, file = paste0(root_dir, "/output/tables/air_toxics_compiled_", proc, ".csv"), row.names = FALSE)
+#proc <- Sys.Date() %>% gsub("-", "", .)
+#write.csv(air_toxics, file = paste0(root_dir, "/output/tables/air_toxics_compiled_", proc, ".csv"), row.names = FALSE)
 
 ##########################################
 # Part 2: Repository data processing
@@ -172,4 +172,5 @@ repository_dat$status <- "final"
 # save 
 proc <- Sys.Date() %>% gsub("-", "", .)
 write.csv(repository_dat, file = paste0(root_dir, "/output/tables/air_toxics_repository_", proc, ".csv"), row.names = FALSE)
+
 

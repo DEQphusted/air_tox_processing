@@ -8,7 +8,7 @@ library(ggplot2)
 library(viridis)
 library(tidyr)
 
-air_toxics <- read_csv("./output/tables/air_toxics_repository_20221026.csv", col_types = cols(.default = "c"))
+air_toxics <- read_csv("./output/tables/air_toxics_repository_20230104.csv", col_types = cols(.default = "c"))
 air_toxics$date <- as.Date(air_toxics$date)
 air_toxics$sample_value <- as.double(air_toxics$sample_value)
 air_toxics$mol_weight_g_mol <- as.double(air_toxics$mol_weight_g_mol)
